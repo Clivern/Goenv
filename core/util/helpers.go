@@ -5,10 +5,7 @@
 package util
 
 import (
-	"encoding/json"
-	"os"
 	"reflect"
-	"strings"
 )
 
 // InArray check if value is on array
@@ -25,54 +22,4 @@ func InArray(val interface{}, array interface{}) bool {
 	}
 
 	return false
-}
-
-// Unset remove element at position i
-func Unset(a []string, i int) []string {
-	a[i] = a[len(a)-1]
-	a[len(a)-1] = ""
-	return a[:len(a)-1]
-}
-
-// LoadFromJSON update object from json
-func LoadFromJSON(item interface{}, data []byte) error {
-	err := json.Unmarshal(data, &item)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-// ConvertToJSON convert object to json
-func ConvertToJSON(item interface{}) (string, error) {
-	data, err := json.Marshal(&item)
-	if err != nil {
-		return "", err
-	}
-	return string(data), nil
-}
-
-// GetHostname gets the hostname
-func GetHostname() (string, error) {
-	hostname, err := os.Hostname()
-
-	if err != nil {
-		return "", err
-	}
-
-	return strings.ToLower(hostname), nil
-}
-
-// IsEmpty validate if string is empty or not
-func IsEmpty(item string) bool {
-	if strings.TrimSpace(item) == "" {
-		return true
-	}
-	return false
-}
-
-// Getenv gets the env variable value
-func Getenv(key string) string {
-	return os.Getenv(key)
 }

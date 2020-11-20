@@ -6,6 +6,7 @@ package main
 
 import (
 	"os"
+	"strings"
 
 	"github.com/spacewalkio/goenv/cmd"
 )
@@ -22,7 +23,7 @@ func main() {
 	cmd.Commit = commit
 	cmd.Date = date
 	cmd.BuiltBy = builtBy
-	cmd.HOME = os.Getenv("HOME")
+	cmd.HOME = strings.TrimSpace(os.Getenv("HOME"))
 
 	cmd.Execute()
 }
