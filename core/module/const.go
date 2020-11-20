@@ -12,6 +12,9 @@ import (
 // golangRegistry the registry to download from
 var golangRegistry = "https://dl.google.com/go/go${VERSION}.${OS}-${ARCH}.tar.gz"
 
+// golangRegistryChecksum the registry checksum URL
+var golangRegistryChecksum = "https://dl.google.com/go/go${VERSION}.${OS}-${ARCH}.tar.gz.sha256"
+
 // golangArchive the archive name
 var golangArchive = "go${VERSION}.${OS}-${ARCH}.tar.gz"
 
@@ -270,6 +273,15 @@ GOENV_ROOT="$HOME/%s" \
 // getDownloadURL returns the download link
 func getDownloadURL(version string) string {
 	url := strings.Replace(golangRegistry, "${VERSION}", version, -1)
+	url = strings.Replace(url, "${OS}", runtime.GOOS, -1)
+	url = strings.Replace(url, "${ARCH}", runtime.GOARCH, -1)
+
+	return url
+}
+
+// getChecksumURL returns the checksum link
+func getChecksumURL(version string) string {
+	url := strings.Replace(golangRegistryChecksum, "${VERSION}", version, -1)
 	url = strings.Replace(url, "${OS}", runtime.GOOS, -1)
 	url = strings.Replace(url, "${ARCH}", runtime.GOARCH, -1)
 

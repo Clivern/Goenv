@@ -62,6 +62,36 @@ func (g *Golang) Install(version string) error {
 		)
 	}
 
+	// Local Checksum
+	checksum, err := util.GetFileSha256Sum(fmt.Sprintf("%s/%s", versionsDir, getArchiveName(version)))
+
+	if err != nil {
+		return fmt.Errorf(
+			"Error while generating the checksum from file %s: %s",
+			fmt.Sprintf("%s/%s", versionsDir, getArchiveName(version)),
+			err.Error(),
+		)
+	}
+
+	// Remote Checksum
+	remoteChecksum, err := util.GetSha256Sum(getChecksumURL(version))
+
+	if err != nil {
+		return fmt.Errorf(
+			"Error while fetching the checksum from remote server %s: %s",
+			getChecksumURL(version),
+			err.Error(),
+		)
+	}
+
+	if (remoteChecksum != "") && (remoteChecksum != checksum) {
+		return fmt.Errorf(
+			"Checksum not matching, try downloading again %s != %s",
+			remoteChecksum,
+			checksum,
+		)
+	}
+
 	err = g.Installer.Untar(
 		versionsDir,
 		fmt.Sprintf("%s/%s", versionsDir, getArchiveName(version)),
