@@ -377,37 +377,7 @@ func (g *Golang) ValidateInstalledVersion(version string) (bool, error) {
 // go bin directory and create shim for them
 func (g *Golang) Rehash() error {
 	var err error
-
-	goShim := fmt.Sprintf("%s/%s/go", g.RootPath, g.ShimsDir)
-	gofmtChim := fmt.Sprintf("%s/%s/gofmt", g.RootPath, g.ShimsDir)
-
-	// create go shim
-	if !g.FileSystem.FileExists(goShim) {
-		err = g.FileSystem.StoreFile(
-			goShim,
-			fmt.Sprintf(goShimContent, g.EnvironmentDir),
-		)
-
-		g.FileSystem.ChangePermission(goShim, 0775)
-	}
-
-	if err != nil {
-		return err
-	}
-
-	// create gofmt shim
-	if !g.FileSystem.FileExists(gofmtChim) {
-		err = g.FileSystem.StoreFile(
-			gofmtChim,
-			fmt.Sprintf(binaryShimContent, "gofmt", g.EnvironmentDir),
-		)
-
-		g.FileSystem.ChangePermission(gofmtChim, 0775)
-	}
-
-	if err != nil {
-		return err
-	}
+	var content string
 
 	// create third party binaries
 	vers, err := g.GetInstalledVersions()
@@ -432,10 +402,15 @@ func (g *Golang) Rehash() error {
 			bin := fmt.Sprintf("%s/%s/%s", g.RootPath, g.ShimsDir, bins[i])
 
 			if !g.FileSystem.FileExists(bin) {
-				err = g.FileSystem.StoreFile(
-					bin,
-					fmt.Sprintf(binaryShimContent, bins[i], g.EnvironmentDir),
-				)
+				// If go, create a go shim
+				if bins[i] == "go" {
+					content = fmt.Sprintf(goShimContent, g.EnvironmentDir)
+				} else {
+					// If not go, it might be gofmt or other installed binaries
+					content = fmt.Sprintf(binaryShimContent, bins[i], g.EnvironmentDir)
+				}
+
+				err = g.FileSystem.StoreFile(bin, content)
 
 				if err != nil {
 					return err
