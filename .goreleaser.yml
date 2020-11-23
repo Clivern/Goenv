@@ -37,4 +37,5 @@ brews:
     tap:
       owner: Spacewalkio
       name: homebrew-tools
+      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
 project_name: goenv
