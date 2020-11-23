@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Goenv Logo" src="/static/logo.png?v=1.3.5" width="200" />
+    <img alt="Goenv Logo" src="/static/logo.png?v=1.3.6" width="200" />
     <h3 align="center">Goenv</h3>
     <p align="center">Manage Your Applications Go Environment</p>
     <p align="center">
@@ -7,10 +7,10 @@
             <img src="https://github.com/spacewalkio/Goenv/actions/workflows/build.yml/badge.svg">
         </a>
         <a href="https://github.com/spacewalkio/Goenv/releases">
-            <img src="https://img.shields.io/badge/Version-v1.3.5-red.svg">
+            <img src="https://img.shields.io/badge/Version-v1.3.6-red.svg">
         </a>
         <a href="https://goreportcard.com/report/github.com/spacewalkio/Goenv">
-            <img src="https://goreportcard.com/badge/github.com/spacewalkio/Goenv?v=1.3.5">
+            <img src="https://goreportcard.com/badge/github.com/spacewalkio/Goenv?v=1.3.6">
         </a>
         <a href="https://godoc.org/github.com/spacewalkio/goenv">
             <img src="https://godoc.org/github.com/spacewalkio/goenv?status.svg">
@@ -42,6 +42,13 @@ $ curl -sL https://github.com/spacewalkio/Goenv/releases/download/v{$GOENV_LATES
 
 # For Mac
 $ curl -sL https://github.com/spacewalkio/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_{$GOENV_LATEST_VERSION}_Darwin_x86_64.tar.gz | tar xz
+```
+
+Or install with homebrew
+
+```zsh
+$ brew tap spacewalkio/tools
+$ brew install spacewalkio/tools/goenv
 ```
 
 Configure the goenv using the following command
