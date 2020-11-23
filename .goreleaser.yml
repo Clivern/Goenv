@@ -33,8 +33,8 @@ snapshot:
   name_template: '{{ .Tag }}-next'
 brews:
   - name: goenv
-    homepage: 'https://github.com/spacewalkio/homebrew-tools'
+    homepage: 'https://github.com/Spacewalkio/homebrew-tools'
     tap:
-      owner: spacewalkio
+      owner: Spacewalkio
       name: homebrew-tools
 project_name: goenv
