@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Goenv Logo" src="/static/logo.png?v=1.3.7" width="200" />
+    <img alt="Goenv Logo" src="/static/logo1.png?v=1.3.7" width="200" />
     <h3 align="center">Goenv</h3>
     <p align="center">Manage Your Applications Go Environment</p>
     <p align="center">
