@@ -2,7 +2,7 @@
 ---
 archives:
   - replacements:
-      386: i386
+      '386': i386
       amd64: x86_64
       darwin: Darwin
       linux: Linux
@@ -12,8 +12,8 @@ archives:
       - README.md
 before:
   hooks:
-    - "go mod download"
-    - "go generate ./..."
+    - go mod download
+    - go generate ./...
 builds:
   - env:
       - CGO_ENABLED=0
@@ -21,15 +21,20 @@ builds:
       - linux
       - darwin
       - windows
-
 changelog:
   filters:
     exclude:
-      - "^docs:"
-      - "^test:"
+      - '^docs:'
+      - '^test:'
   sort: asc
 checksum:
   name_template: checksums.txt
 snapshot:
-  name_template: "{{ .Tag }}-next"
+  name_template: '{{ .Tag }}-next'
+brews:
+  - name: goenv
+    homepage: 'https://github.com/spacewalkio/homebrew-tools'
+    tap:
+      owner: spacewalkio
+      name: homebrew-tools
 project_name: goenv
