@@ -38,4 +38,7 @@ brews:
       owner: Spacewalkio
       name: homebrew-tools
       token: "{{ .Env.TAP_GITHUB_TOKEN }}"
+    commit_author:
+      name: todd-the-bot
+      email: support@clivern.com
 project_name: goenv
