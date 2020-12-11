@@ -233,6 +233,7 @@ var GolangReleases = []string{
 	"1.19beta1",
 	"1.19rc1",
 	"1.19rc2",
+	"1.19",
 }
 
 // goShimContent shim for go binary
