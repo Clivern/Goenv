@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Goenv Logo" src="/static/logo.png?v=1.12.0" width="200" />
+    <img alt="Goenv Logo" src="/static/logo.png?v=1.13.0" width="200" />
     <h3 align="center">Goenv</h3>
     <p align="center">Manage Your Applications Go Environment</p>
     <p align="center">
@@ -7,10 +7,10 @@
             <img src="https://github.com/norwik/Goenv/actions/workflows/build.yml/badge.svg">
         </a>
         <a href="https://github.com/norwik/Goenv/releases">
-            <img src="https://img.shields.io/badge/Version-v1.12.0-red.svg">
+            <img src="https://img.shields.io/badge/Version-v1.13.0-red.svg">
         </a>
         <a href="https://goreportcard.com/report/github.com/norwik/Goenv">
-            <img src="https://goreportcard.com/badge/github.com/norwik/Goenv?v=1.12.0">
+            <img src="https://goreportcard.com/badge/github.com/norwik/Goenv?v=1.13.0">
         </a>
         <a href="https://godoc.org/github.com/norwik/goenv">
             <img src="https://godoc.org/github.com/norwik/goenv?status.svg">
