@@ -11,16 +11,11 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/clivern/goenv/pkg"
-
 	"github.com/franela/goblin"
 )
 
 // TesUnitHelpers
 func TesUnitHelpers(t *testing.T) {
-	baseDir := pkg.GetBaseDir("cache")
-	pkg.LoadConfigs(fmt.Sprintf("%s/config.dist.yml", baseDir))
-
 	g := goblin.Goblin(t)
 
 	g.Describe("#TestInArray", func() {

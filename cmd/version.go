@@ -5,7 +5,6 @@
 package cmd
 
 import (
-	"embed"
 	"fmt"
 
 	"github.com/spf13/cobra"

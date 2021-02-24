@@ -5,8 +5,6 @@
 package main
 
 import (
-	"embed"
-
 	"github.com/clivern/goenv/cmd"
 )
 
