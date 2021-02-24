@@ -12,7 +12,7 @@ import (
 
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "Show the current go version and its origin.",
+	Short: "Show the current go version.",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("...")
 	},
