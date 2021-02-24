@@ -29,9 +29,9 @@
 Download [the latest goenv binary](https://github.com/Clivern/Goenv/releases). Make it executable from everywhere.
 
 ```zsh
-$ export CATEPILLAR_LATEST_VERSION=$(curl --silent "https://api.github.com/repos/Clivern/Goenv/releases/latest" | jq '.tag_name' | sed -E 's/.*"([^"]+)".*/\1/' | tr -d v)
+$ export GOENV_LATEST_VERSION=$(curl --silent "https://api.github.com/repos/Clivern/Goenv/releases/latest" | jq '.tag_name' | sed -E 's/.*"([^"]+)".*/\1/' | tr -d v)
 
-$ curl -sL https://github.com/Clivern/Goenv/releases/download/v{$CATEPILLAR_LATEST_VERSION}/goenv_{$CATEPILLAR_LATEST_VERSION}_Linux_x86_64.tar.gz | tar xz
+$ curl -sL https://github.com/Clivern/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_{$GOENV_LATEST_VERSION}_Linux_x86_64.tar.gz | tar xz
 ```
 
 
