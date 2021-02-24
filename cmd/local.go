@@ -10,14 +10,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "Show the current go version and its origin.",
+var localCmd = &cobra.Command{
+	Use:   "local",
+	Short: "Set or show the local application-specific go version.",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("...")
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(versionCmd)
+	rootCmd.AddCommand(localCmd)
 }

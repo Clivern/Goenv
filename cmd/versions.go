@@ -10,14 +10,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "Show the current go version and its origin.",
+var versionsCmd = &cobra.Command{
+	Use:   "versions",
+	Short: "List installed go versions.",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("...")
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(versionCmd)
+	rootCmd.AddCommand(versionsCmd)
 }
