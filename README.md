@@ -22,9 +22,7 @@
 </p>
 <br/>
 
-## Documentation
-
-### Usage
+## Usage
 
 Download [the latest goenv binary](https://github.com/Clivern/Goenv/releases). Make it executable from everywhere.
 
