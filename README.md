@@ -33,6 +33,45 @@ $ curl -sL https://github.com/Clivern/Goenv/releases/download/v{$GOENV_LATEST_VE
 ```
 
 
+## Under The Hood
+
+At a high level, `goenv` intercepts `Go` commands using `shim` executables injected into your `PATH`, determines which Go version has been specified by your application or globally, and passes your commands to the correct `Go` installation `bin` folder.
+
+**Understanding PATH**
+
+When you run a command like `go` or `gofmt`, your operating system searches through a list of directories to find an executable file with that name. This list of directories lives in an environment variable called `PATH`, with each directory in the list separated by a colon:
+
+```
+/usr/local/bin:/usr/bin:/bin
+```
+
+Directories in `PATH` are searched from left to right, so a matching executable in a directory at the beginning of the list takes precedence over another one at the end. In this example, the `/usr/local/bin` directory will be searched first, then `/usr/bin`, then `/bin`.
+
+**Understanding Shims**
+
+`goenv` works by inserting a directory of shims at the front of your `PATH`:
+
+```
+~/.goenv/shims:/usr/local/bin:/usr/bin:/bin
+```
+
+Through a process called rehashing, `goenv` maintains shims in that directory to match every `Go` command across every installed version of `go` like `gofmt` and so on.
+
+`Shims` are lightweight executables that simply pass your command along to `goenv`. So with `goenv` installed, when you run, say, `gofmt`, your operating system will do the following:
+
+1. Search your `PATH` for an executable file named `gofmt`.
+2. Find the goenv shim named `gofmt` at the beginning of your `PATH`
+3. Run the shim named `gofmt`, which in turn fetch the target go version and use the `gofmt` inside `go/bin` directory.
+
+**Choosing the Go Version**
+
+When you execute a shim, goenv determines which Go version to use by reading it from the following sources, in this order:
+
+1. The GOENV_VERSION environment variable, if specified.
+2. The first `.go-version `file found by searching the current working directory and each of its parent directories until reaching the root of your filesystem. You can modify the `.go-version` file in the current working directory with the `goenv local` command.
+3. The global `~/.goenv/version` file. You can modify this file using the `goenv global` command. If the global version file is not present, goenv assumes you want to use the "system" Go. whatever version would be run if goenv weren't in your path.
+
+
 ## Versioning
 
 For transparency into our release cycle and in striving to maintain backward compatibility, Goenv is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
