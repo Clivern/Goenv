@@ -71,3 +71,8 @@ func IsEmpty(item string) bool {
 	}
 	return false
 }
+
+// Getenv gets the env variable value
+func Getenv(key string) string {
+	return os.Getenv(key)
+}

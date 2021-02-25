@@ -19,6 +19,7 @@ var execCmd = &cobra.Command{
 		// otherwise it return the current version path
 		mydir, _ := os.Getwd()
 		fmt.Println(mydir)
+		fmt.Println(args)
 	},
 }
 

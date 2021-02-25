@@ -4,9 +4,10 @@
 
 package module
 
+// golangRegistry the registry to download from
 var golangRegistry = "https://dl.google.com/go/${VERSION}.${OS}-${ARCH}.tar.gz"
 
-// golangReleases a list of releases
+// golangReleases a list of golang releases
 var golangReleases = []string{
 	"go1",
 	"go1.0.1",
