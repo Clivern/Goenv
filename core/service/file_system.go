@@ -5,7 +5,11 @@
 package service
 
 import (
+	"fmt"
+	"io/ioutil"
 	"os"
+	"path/filepath"
+	"strings"
 )
 
 // FileSystem struct
@@ -59,4 +63,83 @@ func (fs *FileSystem) DeleteDir(dir string) error {
 	}
 
 	return nil
+}
+
+// EnsureTrailingSlash ensure there is a trailing slash
+func (fs *FileSystem) EnsureTrailingSlash(dir string) string {
+	return fmt.Sprintf(
+		"%s%s",
+		strings.TrimRight(dir, string(os.PathSeparator)),
+		string(os.PathSeparator),
+	)
+}
+
+// RemoveTrailingSlash removes any trailing slash
+func (fs *FileSystem) RemoveTrailingSlash(dir string) string {
+	return strings.TrimRight(dir, string(os.PathSeparator))
+}
+
+// RemoveStartingSlash removes any starting slash
+func (fs *FileSystem) RemoveStartingSlash(dir string) string {
+	return strings.TrimLeft(dir, string(os.PathSeparator))
+}
+
+// ClearDir removes all files and sub dirs
+func (fs *FileSystem) ClearDir(dir string) error {
+	files, err := filepath.Glob(filepath.Join(dir, "*"))
+	if err != nil {
+		return err
+	}
+	for _, file := range files {
+		err = os.RemoveAll(file)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// StoreFile stores a file content
+func (fs *FileSystem) StoreFile(path, content string) error {
+	dir := filepath.Dir(path)
+
+	err := os.MkdirAll(dir, 0775)
+
+	if err != nil {
+		return err
+	}
+
+	f, err := os.Create(path)
+
+	if err != nil {
+		return err
+	}
+
+	defer f.Close()
+
+	_, err = f.WriteString(content)
+
+	return err
+}
+
+// PathExists reports whether the path exists
+func (fs *FileSystem) PathExists(path string) bool {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		return false
+	}
+	return true
+}
+
+// DeleteFile deletes a file
+func (fs *FileSystem) DeleteFile(path string) error {
+	return os.Remove(path)
+}
+
+// ReadFile get the file content
+func (fs *FileSystem) ReadFile(path string) (string, error) {
+	data, err := ioutil.ReadFile(path)
+	if err != nil {
+		return "", err
+	}
+	return string(data), nil
 }
