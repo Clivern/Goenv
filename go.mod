@@ -9,7 +9,6 @@ require (
 	github.com/franela/goblin v0.0.0-20211003143422-0a4f594942bf
 	github.com/satori/go.uuid v1.2.0
 	github.com/spf13/cobra v1.5.0
-	golang.org/x/crypto v0.0.0-20220622213112-05595931fe9d
 )
 
 require (

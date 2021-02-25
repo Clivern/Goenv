@@ -8,8 +8,10 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"time"
 
 	"github.com/charmbracelet/bubbles/list"
+	"github.com/charmbracelet/bubbles/spinner"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/spf13/cobra"
@@ -297,6 +299,8 @@ func (d itemDelegate) Render(w io.Writer, m list.Model, index int, listItem list
 	fmt.Fprintf(w, fn(str))
 }
 
+var version string
+
 type model struct {
 	list     list.Model
 	items    []item
@@ -337,7 +341,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m model) View() string {
 	if m.choice != "" {
-		return quitTextStyle.Render(fmt.Sprintf("%s? Sounds good to me.", m.choice))
+		version = m.choice
+		return ""
 	}
 
 	if m.quitting {
@@ -347,13 +352,86 @@ func (m model) View() string {
 	return "\n" + m.list.View()
 }
 
+type errMsg error
+
+type spinnerModel struct {
+	spinner  spinner.Model
+	spin     bool
+	quitting bool
+	err      error
+}
+
+func initialSpinnerModel() spinnerModel {
+	s := spinner.New()
+	s.Spinner = spinner.Dot
+	s.Style = lipgloss.NewStyle().Foreground(lipgloss.Color("205"))
+	return spinnerModel{
+		spinner: s,
+		spin:    true,
+	}
+}
+
+func (m spinnerModel) Init() tea.Cmd {
+	return m.spinner.Tick
+}
+
+func (m spinnerModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	switch msg := msg.(type) {
+
+	case tea.KeyMsg:
+		switch msg.String() {
+		case "q", "esc", "ctrl+c":
+			m.quitting = true
+			return m, tea.Quit
+		case "s":
+			var cmd tea.Cmd
+			m.spin = !m.spin // toggle the spinner
+			if m.spin {
+				cmd = m.spinner.Tick // restart the spinner
+			}
+			return m, cmd
+		default:
+			return m, nil
+		}
+
+	case errMsg:
+		m.err = msg
+		return m, nil
+
+	case spinner.TickMsg:
+		var cmd tea.Cmd
+		// If m.spin is false, don't update on the spinner, effectively stopping it.
+		if m.spin {
+			m.spinner, cmd = m.spinner.Update(msg)
+		}
+		return m, cmd
+
+	default:
+		return m, nil
+	}
+}
+
+func (m spinnerModel) View() string {
+	if m.err != nil {
+		return m.err.Error()
+	}
+
+	str := fmt.Sprintf("\n\n   %s Getting Environment Ready! ...\n\n", m.spinner.View())
+
+	if m.quitting {
+		return str + "\n"
+	}
+
+	return str
+}
+
 var installCmd = &cobra.Command{
 	Use:   "install",
 	Short: "Install a go version.",
 	Run: func(cmd *cobra.Command, args []string) {
 		l := list.New(items, itemDelegate{}, defaultWidth, listHeight)
 		l.Title = "Which go version to install?"
-		l.SetShowStatusBar(false)
+		l.SetShowStatusBar(true)
 		l.SetFilteringEnabled(false)
 		l.Styles.Title = titleStyle
 		l.Styles.PaginationStyle = paginationStyle
@@ -365,6 +443,23 @@ var installCmd = &cobra.Command{
 			fmt.Println("Error running program:", err)
 			os.Exit(1)
 		}
+
+		if version == "" {
+			os.Exit(1)
+		}
+
+		p := tea.NewProgram(initialSpinnerModel())
+
+		go func() {
+			time.Sleep(20 * time.Second)
+			p.Quit()
+		}()
+
+		if err := p.Start(); err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+
 	},
 }
 

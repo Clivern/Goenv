@@ -4,10 +4,14 @@
 
 package module
 
-// Charm type
-type Charm struct {
+// CharmSelect type
+type CharmSelect struct {
 	Items    []string
 	Selected string
 	Title    string
 	Callback func(string) error
+}
+
+// CharmSpinner type
+type CharmSpinner struct {
 }
