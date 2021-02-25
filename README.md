@@ -67,7 +67,7 @@ Through a process called rehashing, `goenv` maintains shims in that directory to
 
 When you execute a shim, goenv determines which Go version to use by reading it from the following sources, in this order:
 
-1. The GOENV_VERSION environment variable, if specified.
+1. The `GOENV_VERSION` environment variable, if specified.
 2. The first `.go-version `file found by searching the current working directory and each of its parent directories until reaching the root of your filesystem. You can modify the `.go-version` file in the current working directory with the `goenv local` command.
 3. The global `~/.goenv/version` file. You can modify this file using the `goenv global` command. If the global version file is not present, goenv assumes you want to use the "system" Go. whatever version would be run if goenv weren't in your path.
 
