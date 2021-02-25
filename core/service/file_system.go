@@ -143,3 +143,8 @@ func (fs *FileSystem) ReadFile(path string) (string, error) {
 	}
 	return string(data), nil
 }
+
+// Rename rename a dir or a file
+func (fs *FileSystem) Rename(old, new string) error {
+	return os.Rename(old, new)
+}

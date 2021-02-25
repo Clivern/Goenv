@@ -40,7 +40,10 @@ func (i *Installer) DownloadFromURL(dir string, url string) (string, error) {
 	defer response.Body.Close()
 
 	if response.StatusCode != 200 {
-		return "", fmt.Errorf("Unable to download from %s", url)
+		return "", fmt.Errorf(
+			"Unable to download from %s",
+			url,
+		)
 	}
 
 	tarFile := filepath.Join(dir, fileName)
@@ -50,6 +53,7 @@ func (i *Installer) DownloadFromURL(dir string, url string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
 	defer output.Close()
 
 	_, err = io.Copy(output, response.Body)
@@ -77,6 +81,7 @@ func (i *Installer) Untar(extractPath, sourcefilePath string) error {
 		if fileReader, err = gzip.NewReader(file); err != nil {
 			return err
 		}
+
 		defer fileReader.Close()
 	}
 
@@ -84,6 +89,7 @@ func (i *Installer) Untar(extractPath, sourcefilePath string) error {
 
 	for {
 		header, err := tarBallReader.Next()
+
 		if err != nil {
 			if err == io.EOF {
 				break
@@ -94,6 +100,7 @@ func (i *Installer) Untar(extractPath, sourcefilePath string) error {
 		filename := filepath.Join(extractPath, filepath.FromSlash(header.Name))
 
 		switch header.Typeflag {
+
 		case tar.TypeDir:
 			err = os.MkdirAll(filename, os.FileMode(header.Mode)) // or use 0755 if you prefer
 
