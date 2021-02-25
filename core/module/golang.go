@@ -161,7 +161,7 @@ func (g *Golang) Configure() error {
 	var err error
 
 	if !g.FileSystem.DirExists(g.RootPath) {
-		err = g.FileSystem.EnsureDir(g.RootPath, 755)
+		err = g.FileSystem.EnsureDir(g.RootPath, 0755)
 	}
 
 	if !g.FileSystem.DirExists(fmt.Sprintf("%s/%s", g.RootPath, g.ReleasesDir)) {
