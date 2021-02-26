@@ -138,6 +138,7 @@ func (fs *FileSystem) DeleteFile(path string) error {
 // ReadFile get the file content
 func (fs *FileSystem) ReadFile(path string) (string, error) {
 	data, err := ioutil.ReadFile(path)
+
 	if err != nil {
 		return "", err
 	}

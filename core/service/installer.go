@@ -67,6 +67,7 @@ func (i *Installer) DownloadFromURL(dir string, url string) (string, error) {
 
 // Untar uncompress a .tar.gz file
 func (i *Installer) Untar(extractPath, sourcefilePath string) error {
+
 	file, err := os.Open(sourcefilePath)
 
 	if err != nil {
@@ -78,6 +79,7 @@ func (i *Installer) Untar(extractPath, sourcefilePath string) error {
 	var fileReader io.ReadCloser = file
 
 	if strings.HasSuffix(sourcefilePath, ".gz") {
+
 		if fileReader, err = gzip.NewReader(file); err != nil {
 			return err
 		}
@@ -94,6 +96,7 @@ func (i *Installer) Untar(extractPath, sourcefilePath string) error {
 			if err == io.EOF {
 				break
 			}
+
 			return err
 		}
 
@@ -102,7 +105,7 @@ func (i *Installer) Untar(extractPath, sourcefilePath string) error {
 		switch header.Typeflag {
 
 		case tar.TypeDir:
-			err = os.MkdirAll(filename, os.FileMode(header.Mode)) // or use 0755 if you prefer
+			err = os.MkdirAll(filename, os.FileMode(header.Mode))
 
 			if err != nil {
 				return err
