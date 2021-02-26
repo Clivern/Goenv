@@ -6,6 +6,9 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+
+	"github.com/clivern/goenv/core/module"
 
 	"github.com/spf13/cobra"
 )
@@ -14,7 +17,51 @@ var localCmd = &cobra.Command{
 	Use:   "local",
 	Short: "Set or show the local application-specific go version.",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("...")
+
+		golang := module.NewGolangEnvironment(HOME)
+
+		if len(args) == 1 {
+
+			if !golang.ValidateVersion(args[0]) {
+				fmt.Printf("Error! Invalid version provided %s\n", args[0])
+				return
+			}
+
+			// Set the local version
+			err := golang.SetLocalVersion(args[0])
+
+			if err != nil {
+				fmt.Println(err.Error())
+			} else {
+				fmt.Printf("Local version updated into %s\n", args[0])
+			}
+
+			return
+		}
+
+		cdir, err := os.Getwd()
+
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+
+		version, err := golang.GetLocalVersion(cdir)
+
+		if err == nil {
+			fmt.Println(version)
+			return
+		}
+
+		fmt.Println("Unable to find local version, fallback into global version")
+
+		version, err = golang.GetGlobalVersion()
+
+		if err == nil {
+			fmt.Println(version)
+			return
+		}
+
+		fmt.Println(err.Error())
 	},
 }
 

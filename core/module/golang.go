@@ -6,6 +6,7 @@ package module
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -167,6 +168,24 @@ func (g *Golang) SetGlobalVersion(version string) error {
 	path := fmt.Sprintf(
 		"%s/%s",
 		g.RootPath,
+		g.VersionFile,
+	)
+
+	return g.SetVersion(path, version)
+}
+
+// SetLocalVersion sets the local golang version
+func (g *Golang) SetLocalVersion(version string) error {
+
+	cdir, err := os.Getwd()
+
+	if err != nil {
+		return err
+	}
+
+	path := fmt.Sprintf(
+		"%s/%s",
+		g.FileSystem.RemoveTrailingSlash(cdir),
 		g.VersionFile,
 	)
 
