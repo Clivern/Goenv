@@ -13,6 +13,26 @@ import (
 	"github.com/charmbracelet/lipgloss"
 )
 
+// Example
+//
+// ```
+// import (
+//	  "github.com/clivern/goenv/core/module"
+// )
+//
+//
+// list := module.NewCharmSelect("Which go version to install?", module.golangReleases)
+//
+// if err := list.Start(); err != nil {
+// 	  fmt.Println("Error running program:", err)
+// 	  os.Exit(1)
+// }
+//
+// if module.SelectedValue == "" {
+// 	  os.Exit(1)
+// }
+// ```
+
 // NewCharmSelect Creates a new instance of tea.Program
 func NewCharmSelect(title string, versions []string) *tea.Program {
 	items := []list.Item{}
