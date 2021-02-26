@@ -16,6 +16,12 @@ var configCmd = &cobra.Command{
 	Use:   "config",
 	Short: "Configure the goenv application.",
 	Run: func(cmd *cobra.Command, args []string) {
+
+		if HOME == "" {
+			fmt.Println("Error! `HOME` environment variable is not set")
+			return
+		}
+
 		golang := module.NewGolangEnvironment(HOME)
 
 		err := golang.Configure()
