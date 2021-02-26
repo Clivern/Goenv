@@ -18,7 +18,7 @@ import (
 type Golang struct {
 	RootPath       string
 	EnvironmentDir string
-	ReleasesDir    string
+	VersionsDir    string
 	ShimDir        string
 	VersionFile    string
 	FileSystem     *service.FileSystem
@@ -32,7 +32,7 @@ func NewGolangEnvironment(homePath string) *Golang {
 
 	return &Golang{
 		RootPath:       fmt.Sprintf("%s/%s", fs.RemoveTrailingSlash(homePath), ".goenv"),
-		ReleasesDir:    "releases",
+		VersionsDir:    "versions",
 		ShimDir:        "shims",
 		VersionFile:    ".go-version",
 		EnvironmentDir: ".goenv",
@@ -46,10 +46,10 @@ func (g *Golang) Install(version string) error {
 
 	url := getDownloadURL(version)
 
-	releasesDir := fmt.Sprintf("%s/%s", g.RootPath, g.ReleasesDir)
+	versionsDir := fmt.Sprintf("%s/%s", g.RootPath, g.VersionsDir)
 
 	_, err := g.Installer.DownloadFromURL(
-		releasesDir,
+		versionsDir,
 		url,
 	)
 
@@ -63,8 +63,8 @@ func (g *Golang) Install(version string) error {
 	}
 
 	err = g.Installer.Untar(
-		releasesDir,
-		fmt.Sprintf("%s/%s", releasesDir, getArchiveName(version)),
+		versionsDir,
+		fmt.Sprintf("%s/%s", versionsDir, getArchiveName(version)),
 	)
 
 	if err != nil {
@@ -77,29 +77,29 @@ func (g *Golang) Install(version string) error {
 	}
 
 	err = g.FileSystem.Rename(
-		fmt.Sprintf("%s/go", releasesDir),
-		fmt.Sprintf("%s/go%s", releasesDir, version),
+		fmt.Sprintf("%s/go", versionsDir),
+		fmt.Sprintf("%s/%s", versionsDir, version),
 	)
 
 	if err != nil {
 		return fmt.Errorf(
 			"Error while renaming the go directory from %s to %s: %s",
-			fmt.Sprintf("%s/go", releasesDir),
-			fmt.Sprintf("%s/go%s", releasesDir, version),
+			fmt.Sprintf("%s/go", versionsDir),
+			fmt.Sprintf("%s/%s", versionsDir, version),
 			err.Error(),
 		)
 	}
 
 	err = g.FileSystem.DeleteFile(fmt.Sprintf(
 		"%s/%s",
-		releasesDir,
+		versionsDir,
 		getArchiveName(version),
 	))
 
 	if err != nil {
 		return fmt.Errorf(
 			"Error while deleting file %s: %s",
-			fmt.Sprintf("%s/%s", releasesDir, getArchiveName(version)),
+			fmt.Sprintf("%s/%s", versionsDir, getArchiveName(version)),
 			err.Error(),
 		)
 	}
@@ -111,9 +111,9 @@ func (g *Golang) Install(version string) error {
 func (g *Golang) Uninstall(version string) error {
 
 	path := fmt.Sprintf(
-		"%s/%s/go%s",
+		"%s/%s/%s",
 		g.RootPath,
-		g.ReleasesDir,
+		g.VersionsDir,
 		version,
 	)
 
@@ -274,8 +274,8 @@ func (g *Golang) Configure() error {
 		return fmt.Errorf("Unable to configure environment: %s", err.Error())
 	}
 
-	if !g.FileSystem.DirExists(fmt.Sprintf("%s/%s", g.RootPath, g.ReleasesDir)) {
-		err = g.FileSystem.EnsureDir(fmt.Sprintf("%s/%s", g.RootPath, g.ReleasesDir), 0755)
+	if !g.FileSystem.DirExists(fmt.Sprintf("%s/%s", g.RootPath, g.VersionsDir)) {
+		err = g.FileSystem.EnsureDir(fmt.Sprintf("%s/%s", g.RootPath, g.VersionsDir), 0755)
 	}
 
 	if err != nil {
@@ -301,14 +301,14 @@ func (g *Golang) GetVersions() []string {
 // GetInstalledVersions returns a list of installed versions
 func (g *Golang) GetInstalledVersions() ([]string, error) {
 
-	path := fmt.Sprintf("%s/%s", g.RootPath, g.ReleasesDir)
+	path := fmt.Sprintf("%s/%s", g.RootPath, g.VersionsDir)
 
 	result, err := g.FileSystem.GetSubDirectoriesNames(path)
 
-	releases := []string{}
+	versions := []string{}
 
 	if err != nil {
-		return releases, fmt.Errorf(
+		return versions, fmt.Errorf(
 			"Unable to list directory %s: %s",
 			path,
 			err.Error(),
@@ -316,14 +316,14 @@ func (g *Golang) GetInstalledVersions() ([]string, error) {
 	}
 
 	for i := 0; i < len(result); i++ {
-		if !strings.Contains(result[i], "go") {
+		if !util.InArray(result[i], g.GetVersions()) {
 			continue
 		}
 
-		releases = append(releases, strings.TrimPrefix(result[i], "go"))
+		versions = append(versions, result[i])
 	}
 
-	return releases, nil
+	return versions, nil
 }
 
 // ValidateVersion validates if a version is valid

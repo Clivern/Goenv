@@ -7,7 +7,6 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/clivern/goenv/core/module"
 
@@ -40,8 +39,6 @@ var uninstallCmd = &cobra.Command{
 				os.Exit(1)
 			}
 		} else {
-			args[0] = strings.TrimPrefix(args[0], "go")
-
 			module.SelectedValue = args[0]
 		}
 

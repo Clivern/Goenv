@@ -7,7 +7,6 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/clivern/goenv/core/module"
 
@@ -22,7 +21,6 @@ var localCmd = &cobra.Command{
 		golang := module.NewGolangEnvironment(HOME)
 
 		if len(args) == 1 {
-			args[0] = strings.TrimPrefix(args[0], "go")
 
 			if !golang.ValidateVersion(args[0]) {
 				fmt.Printf("Error! Invalid version provided %s\n", args[0])

@@ -175,7 +175,7 @@ func (m listModel) View() string {
 	}
 
 	if m.quitting {
-		return quitTextStyle.Render("Not hungry? That’s cool.")
+		return quitTextStyle.Render("Action cancelled! That’s cool.")
 	}
 
 	return "\n" + m.list.View()

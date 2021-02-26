@@ -32,7 +32,7 @@ $ export GOENV_LATEST_VERSION=$(curl --silent "https://api.github.com/repos/Cliv
 $ curl -sL https://github.com/Clivern/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_{$GOENV_LATEST_VERSION}_Linux_x86_64.tar.gz | tar xz
 ```
 
-Configure the Goenv.
+Configure the goenv.
 
 ```zsh
 $ goenv config
@@ -43,6 +43,51 @@ Install a new go version `1.18` and set as a global
 ```zsh
 $ goenv install 1.18
 $ goenv global 1.18
+```
+
+To configure a local version different from the global
+
+```zsh
+$ goenv local 1.18
+```
+
+To Uninstall a version
+
+```zsh
+$ goenv uninstall 1.18
+```
+
+for a list of all commands
+
+```zsh
+$ goenv --help
+
+🐙 Manage Your Applications Go Environment.
+
+If you have any suggestions, bug reports, or annoyances please report
+them to our issue tracker at <https://github.com/Clivern/goenv/issues>
+
+Usage:
+  goenv [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  config      Configure the goenv application.
+  exec        Show the current go version.
+  global      Set or show the global go version.
+  help        Help about any command
+  info        Print the goenv version
+  install     Install a go version.
+  license     Print the license
+  local       Set or show the local application-specific go version.
+  uninstall   Uninstall a specific go version.
+  version     Show the current go version.
+  versions    List installed go versions.
+
+Flags:
+  -h, --help   help for goenv
+
+Use "goenv [command] --help" for more information about a command.
 ```
 
 
