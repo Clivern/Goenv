@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/clivern/goenv/core/service"
+	"github.com/clivern/goenv/core/util"
 )
 
 // Golang type
@@ -253,13 +254,48 @@ func (g *Golang) GetVersions() []string {
 }
 
 // GetInstalledVersions returns a list of installed versions
-func (g *Golang) GetInstalledVersions() []string {
-	return []string{}
+func (g *Golang) GetInstalledVersions() ([]string, error) {
+
+	path := fmt.Sprintf("%s/%s", g.RootPath, g.ReleasesDir)
+
+	result, err := g.FileSystem.GetSubDirectoriesNames(path)
+
+	releases := []string{}
+
+	if err != nil {
+		return releases, fmt.Errorf(
+			"Unable to list directory %s: %s",
+			path,
+			err.Error(),
+		)
+	}
+
+	for i := 0; i < len(result); i++ {
+		if !strings.Contains(result[i], "go") {
+			continue
+		}
+
+		releases = append(releases, strings.TrimPrefix(result[i], "go"))
+	}
+
+	return releases, nil
 }
 
-// CreateShim create a new shim
-func (g *Golang) CreateShim() error {
-	return nil
+// ValidateVersion validates if a version is valid
+func (g *Golang) ValidateVersion(version string) bool {
+	return util.InArray(version, g.GetVersions())
+}
+
+// ValidateInstalledVersion validates if an installed version is valid
+func (g *Golang) ValidateInstalledVersion(version string) (bool, error) {
+
+	versions, err := g.GetInstalledVersions()
+
+	if err != nil {
+		return false, err
+	}
+
+	return util.InArray(version, versions), nil
 }
 
 // Rehash gets a list of binaries under a certain

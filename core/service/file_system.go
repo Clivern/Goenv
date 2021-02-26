@@ -148,3 +148,41 @@ func (fs *FileSystem) ReadFile(path string) (string, error) {
 func (fs *FileSystem) Rename(old, new string) error {
 	return os.Rename(old, new)
 }
+
+// GetSubDirectoriesNames gets a list of sub directories
+func (fs *FileSystem) GetSubDirectoriesNames(path string) ([]string, error) {
+	result := []string{}
+
+	files, err := ioutil.ReadDir(path)
+
+	if err != nil {
+		return result, err
+	}
+
+	for _, fileInfo := range files {
+		if fileInfo.IsDir() {
+			result = append(result, fileInfo.Name())
+		}
+	}
+
+	return result, nil
+}
+
+// GetDirectoryFileNames get a list of files inside a directory
+func (fs *FileSystem) GetDirectoryFileNames(path string) ([]string, error) {
+	result := []string{}
+
+	files, err := ioutil.ReadDir(path)
+
+	if err != nil {
+		return result, err
+	}
+
+	for _, fileInfo := range files {
+		if !fileInfo.IsDir() {
+			result = append(result, fileInfo.Name())
+		}
+	}
+
+	return result, nil
+}
