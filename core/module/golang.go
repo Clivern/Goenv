@@ -161,6 +161,18 @@ func (g *Golang) SetVersion(path, version string) error {
 	return nil
 }
 
+// SetGlobalVersion sets the global golang version
+func (g *Golang) SetGlobalVersion(version string) error {
+
+	path := fmt.Sprintf(
+		"%s/%s",
+		g.RootPath,
+		g.VersionFile,
+	)
+
+	return g.SetVersion(path, version)
+}
+
 // GetLocalVersion returns the local golang version
 func (g *Golang) GetLocalVersion(dir string) (string, error) {
 

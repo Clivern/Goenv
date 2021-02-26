@@ -5,6 +5,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/clivern/goenv/cmd"
 )
 
@@ -20,6 +22,7 @@ func main() {
 	cmd.Commit = commit
 	cmd.Date = date
 	cmd.BuiltBy = builtBy
+	cmd.HOME = os.Getenv("HOME")
 
 	cmd.Execute()
 }

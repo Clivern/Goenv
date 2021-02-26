@@ -7,6 +7,8 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/clivern/goenv/core/module"
+
 	"github.com/spf13/cobra"
 )
 
@@ -14,7 +16,19 @@ var versionsCmd = &cobra.Command{
 	Use:   "versions",
 	Short: "List installed go versions.",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("...")
+
+		golang := module.NewGolangEnvironment(HOME)
+
+		versions, err := golang.GetInstalledVersions()
+
+		if err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+
+		for i := 0; i < len(versions); i++ {
+			fmt.Println(versions[i])
+		}
 	},
 }
 
