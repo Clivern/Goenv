@@ -19,6 +19,7 @@ type Golang struct {
 	RootPath       string
 	EnvironmentDir string
 	ReleasesDir    string
+	ShimDir        string
 	VersionFile    string
 	FileSystem     *service.FileSystem
 	Installer      *service.Installer
@@ -32,6 +33,7 @@ func NewGolangEnvironment(homePath string) *Golang {
 	return &Golang{
 		RootPath:       fmt.Sprintf("%s/%s", fs.RemoveTrailingSlash(homePath), ".goenv"),
 		ReleasesDir:    "releases",
+		ShimDir:        "shims",
 		VersionFile:    ".go-version",
 		EnvironmentDir: ".goenv",
 		FileSystem:     fs,
@@ -268,8 +270,20 @@ func (g *Golang) Configure() error {
 		err = g.FileSystem.EnsureDir(g.RootPath, 0755)
 	}
 
+	if err != nil {
+		return fmt.Errorf("Unable to configure environment: %s", err.Error())
+	}
+
 	if !g.FileSystem.DirExists(fmt.Sprintf("%s/%s", g.RootPath, g.ReleasesDir)) {
 		err = g.FileSystem.EnsureDir(fmt.Sprintf("%s/%s", g.RootPath, g.ReleasesDir), 0755)
+	}
+
+	if err != nil {
+		return fmt.Errorf("Unable to configure environment: %s", err.Error())
+	}
+
+	if !g.FileSystem.DirExists(fmt.Sprintf("%s/%s", g.RootPath, g.ShimDir)) {
+		err = g.FileSystem.EnsureDir(fmt.Sprintf("%s/%s", g.RootPath, g.ShimDir), 0755)
 	}
 
 	if err != nil {

@@ -32,7 +32,7 @@ $ export GOENV_LATEST_VERSION=$(curl --silent "https://api.github.com/repos/Cliv
 $ curl -sL https://github.com/Clivern/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_{$GOENV_LATEST_VERSION}_Linux_x86_64.tar.gz | tar xz
 ```
 
-Configure the goenv.
+Configure the Goenv.
 
 ```zsh
 $ goenv config
@@ -40,7 +40,7 @@ $ goenv config
 
 Install a new go version `1.18` and set as a global
 
-```
+```zsh
 $ goenv install 1.18
 $ goenv global 1.18
 ```
