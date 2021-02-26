@@ -249,7 +249,12 @@ func (g *Golang) Configure() error {
 
 // GetVersions returns a list of all available versions
 func (g *Golang) GetVersions() []string {
-	return golangReleases
+	return GolangReleases
+}
+
+// GetInstalledVersions returns a list of installed versions
+func (g *Golang) GetInstalledVersions() []string {
+	return []string{}
 }
 
 // CreateShim create a new shim

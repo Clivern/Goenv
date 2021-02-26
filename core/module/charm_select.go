@@ -103,7 +103,7 @@ func (d itemDelegate) Spacing() int {
 }
 
 // Update method
-func (d itemDelegate) Update(msg tea.Msg, m *list.Model) tea.Cmd {
+func (d itemDelegate) Update(_ tea.Msg, _ *list.Model) tea.Cmd {
 	return nil
 }
 

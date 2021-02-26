@@ -15,8 +15,8 @@ var golangRegistry = "https://dl.google.com/go/go${VERSION}.${OS}-${ARCH}.tar.gz
 // golangArchive the archive name
 var golangArchive = "go${VERSION}.${OS}-${ARCH}.tar.gz"
 
-// golangReleases a list of golang releases
-var golangReleases = []string{
+// GolangReleases a list of golang releases
+var GolangReleases = []string{
 	"1",
 	"1.0.1",
 	"1.0.2",
