@@ -7,7 +7,6 @@ package cmd
 import (
 	"fmt"
 	"os"
-	"time"
 
 	"github.com/clivern/goenv/core/module"
 
@@ -18,18 +17,38 @@ var installCmd = &cobra.Command{
 	Use:   "install",
 	Short: "Install a go version.",
 	Run: func(cmd *cobra.Command, args []string) {
-		// Show the go releases select box
-		list := module.NewCharmSelect(
-			"Which go version to install?",
-			module.GolangReleases,
-		)
 
-		if err := list.Start(); err != nil {
-			fmt.Printf("Error showing releases list: %s\n", err.Error())
+		golang := module.NewGolangEnvironment(HOME)
+
+		if len(args) == 0 {
+			// Show the go releases select box
+			list := module.NewCharmSelect(
+				"Which go version to install?",
+				module.GolangReleases,
+			)
+
+			if err := list.Start(); err != nil {
+				fmt.Printf("Error showing releases list: %s\n", err.Error())
+				os.Exit(1)
+			}
+		} else {
+			module.SelectedValue = args[0]
+		}
+
+		if !golang.ValidateVersion(module.SelectedValue) {
+			fmt.Printf("Error! Invalid version provided %s\n", module.SelectedValue)
 			os.Exit(1)
 		}
 
-		if module.SelectedValue == "" {
+		isInstalled, err := golang.ValidateInstalledVersion(module.SelectedValue)
+
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+
+		if isInstalled {
+			fmt.Printf("Error! Version %s is already installed\n", module.SelectedValue)
 			os.Exit(1)
 		}
 
@@ -41,7 +60,12 @@ var installCmd = &cobra.Command{
 
 		go func() {
 			// Download and install go selected version
-			time.Sleep(20 * time.Second)
+			err = golang.Install(module.SelectedValue)
+
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+
 			spinner.Quit()
 		}()
 

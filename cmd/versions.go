@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/clivern/goenv/core/module"
 
@@ -23,7 +24,7 @@ var versionsCmd = &cobra.Command{
 
 		if err != nil {
 			fmt.Println(err.Error())
-			return
+			os.Exit(1)
 		}
 
 		for i := 0; i < len(versions); i++ {

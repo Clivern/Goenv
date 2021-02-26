@@ -24,7 +24,7 @@ var localCmd = &cobra.Command{
 
 			if !golang.ValidateVersion(args[0]) {
 				fmt.Printf("Error! Invalid version provided %s\n", args[0])
-				return
+				os.Exit(1)
 			}
 
 			// Set the local version
@@ -32,10 +32,10 @@ var localCmd = &cobra.Command{
 
 			if err != nil {
 				fmt.Println(err.Error())
-			} else {
-				fmt.Printf("Local version updated into %s\n", args[0])
+				os.Exit(1)
 			}
 
+			fmt.Printf("Local version updated into %s\n", args[0])
 			return
 		}
 
@@ -43,6 +43,7 @@ var localCmd = &cobra.Command{
 
 		if err != nil {
 			fmt.Println(err.Error())
+			os.Exit(1)
 		}
 
 		version, err := golang.GetLocalVersion(cdir)
@@ -62,6 +63,7 @@ var localCmd = &cobra.Command{
 		}
 
 		fmt.Println(err.Error())
+		os.Exit(1)
 	},
 }
 

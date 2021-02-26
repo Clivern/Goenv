@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/clivern/goenv/core/module"
 
@@ -19,7 +20,7 @@ var configCmd = &cobra.Command{
 
 		if HOME == "" {
 			fmt.Println("Error! `HOME` environment variable is not set")
-			return
+			os.Exit(1)
 		}
 
 		golang := module.NewGolangEnvironment(HOME)
@@ -28,7 +29,7 @@ var configCmd = &cobra.Command{
 
 		if err != nil {
 			fmt.Println(err.Error())
-			return
+			os.Exit(1)
 		}
 
 		fmt.Println("Goenv configured successfully!")

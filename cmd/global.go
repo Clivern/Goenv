@@ -6,6 +6,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/clivern/goenv/core/module"
 
@@ -23,7 +24,7 @@ var globalCmd = &cobra.Command{
 
 			if !golang.ValidateVersion(args[0]) {
 				fmt.Printf("Error! Invalid version provided %s\n", args[0])
-				return
+				os.Exit(1)
 			}
 
 			// Set the global version
@@ -31,10 +32,10 @@ var globalCmd = &cobra.Command{
 
 			if err != nil {
 				fmt.Println(err.Error())
-			} else {
-				fmt.Printf("Global version updated into %s\n", args[0])
+				os.Exit(1)
 			}
 
+			fmt.Printf("Global version updated into %s\n", args[0])
 			return
 		}
 
@@ -43,7 +44,7 @@ var globalCmd = &cobra.Command{
 
 		if err != nil {
 			fmt.Println(err.Error())
-			return
+			os.Exit(1)
 		}
 
 		fmt.Println(version)

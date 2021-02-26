@@ -24,6 +24,7 @@ var versionCmd = &cobra.Command{
 
 		if err != nil {
 			fmt.Println(err.Error())
+			os.Exit(1)
 		}
 
 		version, err := golang.GetLocalVersion(cdir)
@@ -43,6 +44,7 @@ var versionCmd = &cobra.Command{
 		}
 
 		fmt.Println(err.Error())
+		os.Exit(1)
 	},
 }
 
