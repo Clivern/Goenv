@@ -22,7 +22,7 @@
 </p>
 <br/>
 
-Goenv help you to work with multiple `golang` versions at the same time whether on mac or linux operating system. It supports both global and per-application version configuration.
+Goenv helps you to work with multiple `golang` versions at the same time whether on mac or linux operating system. It supports both global and per-application version configuration.
 
 
 ## Usage
