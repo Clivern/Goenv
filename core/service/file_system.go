@@ -103,7 +103,7 @@ func (fs *FileSystem) ClearDir(dir string) error {
 func (fs *FileSystem) StoreFile(path, content string) error {
 	dir := filepath.Dir(path)
 
-	err := os.MkdirAll(dir, 0755)
+	err := os.MkdirAll(dir, 0775)
 
 	if err != nil {
 		return err

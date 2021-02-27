@@ -267,7 +267,7 @@ func (g *Golang) Configure() error {
 	var err error
 
 	if !g.FileSystem.DirExists(g.RootPath) {
-		err = g.FileSystem.EnsureDir(g.RootPath, 0755)
+		err = g.FileSystem.EnsureDir(g.RootPath, 0775)
 	}
 
 	if err != nil {
@@ -275,7 +275,7 @@ func (g *Golang) Configure() error {
 	}
 
 	if !g.FileSystem.DirExists(fmt.Sprintf("%s/%s", g.RootPath, g.VersionsDir)) {
-		err = g.FileSystem.EnsureDir(fmt.Sprintf("%s/%s", g.RootPath, g.VersionsDir), 0755)
+		err = g.FileSystem.EnsureDir(fmt.Sprintf("%s/%s", g.RootPath, g.VersionsDir), 0775)
 	}
 
 	if err != nil {
@@ -283,7 +283,7 @@ func (g *Golang) Configure() error {
 	}
 
 	if !g.FileSystem.DirExists(fmt.Sprintf("%s/%s", g.RootPath, g.ShimsDir)) {
-		err = g.FileSystem.EnsureDir(fmt.Sprintf("%s/%s", g.RootPath, g.ShimsDir), 0755)
+		err = g.FileSystem.EnsureDir(fmt.Sprintf("%s/%s", g.RootPath, g.ShimsDir), 0775)
 	}
 
 	if err != nil {
@@ -358,7 +358,7 @@ func (g *Golang) Rehash() error {
 			fmt.Sprintf(goShimContent, g.RootPath),
 		)
 
-		g.FileSystem.ChangePermission(goShim, 0755)
+		g.FileSystem.ChangePermission(goShim, 0775)
 	}
 
 	if err != nil {
@@ -372,7 +372,7 @@ func (g *Golang) Rehash() error {
 			fmt.Sprintf(binaryShimContent, "gofmt", g.RootPath),
 		)
 
-		g.FileSystem.ChangePermission(gofmtChim, 0755)
+		g.FileSystem.ChangePermission(gofmtChim, 0775)
 	}
 
 	if err != nil {
@@ -411,7 +411,7 @@ func (g *Golang) Rehash() error {
 					return err
 				}
 
-				g.FileSystem.ChangePermission(bin, 0755)
+				g.FileSystem.ChangePermission(bin, 0775)
 			}
 		}
 	}

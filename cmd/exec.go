@@ -6,6 +6,9 @@ package cmd
 
 import (
 	"fmt"
+	"os"
+
+	"github.com/clivern/goenv/core/module"
 
 	"github.com/spf13/cobra"
 )
@@ -14,9 +17,34 @@ var execCmd = &cobra.Command{
 	Use:   "exec",
 	Short: "Show the current go version.",
 	Run: func(cmd *cobra.Command, args []string) {
-		// If the command is go install or go get, it will create a new chim with the new binary in .goenv/shims
-		// otherwise it return the current version path
-		fmt.Printf("%s", "/Users/ahmetwal/.goenv/versions/1.16")
+
+		// Get local version path
+		golang := module.NewGolangEnvironment(HOME)
+
+		cdir, err := os.Getwd()
+
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+
+		version, err := golang.GetLocalVersion(cdir)
+
+		if err == nil {
+			fmt.Printf("%s/%s/%s", golang.RootPath, golang.VersionsDir, version)
+			return
+		}
+
+		// Get global version path
+		version, err = golang.GetGlobalVersion()
+
+		if err == nil {
+			fmt.Printf("%s/%s/%s", golang.RootPath, golang.VersionsDir, version)
+			return
+		}
+
+		fmt.Println(err.Error())
+		os.Exit(1)
 	},
 }
 
