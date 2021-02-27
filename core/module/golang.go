@@ -388,7 +388,7 @@ func (g *Golang) Rehash() error {
 
 	for i := 0; i < len(vers); i++ {
 		bins, err := g.FileSystem.GetDirectoryFileNames(fmt.Sprintf(
-			"%s/%s/%s",
+			"%s/%s/%s/bin",
 			g.RootPath,
 			g.VersionsDir,
 			vers[i],
