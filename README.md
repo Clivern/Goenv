@@ -22,6 +22,9 @@
 </p>
 <br/>
 
+Goenv is inspired by and works like `rbenv`. Similarly use `goenv` to pick a Go version for your application and guarantee that your development environment matches production.
+
+
 ## Usage
 
 Download [the latest goenv binary](https://github.com/Clivern/Goenv/releases). Make it executable from everywhere.
