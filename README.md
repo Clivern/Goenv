@@ -49,6 +49,10 @@ Add `goenv` shims to `PATH` using the following command. also append it to `~/.p
 
 ```zsh
 $ export PATH="$HOME/.goenv/shims:"$PATH
+
+# OR
+
+$ eval "$(goenv init)"
 ```
 
 Install a new `go` version `1.18` and set as a global
@@ -102,9 +106,11 @@ Available Commands:
   global      Set or show the global go version.
   help        Help about any command
   info        Print the goenv version
+  init        Init the import path for goenv shims.
   install     Install a go version.
   license     Print the license
   local       Set or show the local application-specific go version.
+  rehash      Refresh binaries under goenv shim directory.
   uninstall   Uninstall a specific go version.
   version     Show the current go version.
   versions    List installed go versions.
