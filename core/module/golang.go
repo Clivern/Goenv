@@ -407,6 +407,10 @@ func (g *Golang) Rehash() error {
 					fmt.Sprintf(binaryShimContent, "bin", g.RootPath),
 				)
 
+				if err != nil {
+					return err
+				}
+
 				g.FileSystem.ChangePermission(bin, 0755)
 			}
 		}
