@@ -7,7 +7,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/clivern/goenv/core/module"
+	"github.com/spacewalkio/goenv/core/module"
 
 	"github.com/spf13/cobra"
 )

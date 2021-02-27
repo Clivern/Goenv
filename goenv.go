@@ -7,7 +7,7 @@ package main
 import (
 	"os"
 
-	"github.com/clivern/goenv/cmd"
+	"github.com/spacewalkio/goenv/cmd"
 )
 
 var (

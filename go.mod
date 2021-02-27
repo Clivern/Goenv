@@ -1,4 +1,4 @@
-module github.com/clivern/goenv
+module github.com/spacewalkio/goenv
 
 go 1.18
 

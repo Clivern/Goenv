@@ -16,7 +16,7 @@ import (
 //
 // ```
 // import (
-//	  "github.com/clivern/goenv/core/module"
+//	  "github.com/spacewalkio/goenv/core/module"
 // )
 //
 //
