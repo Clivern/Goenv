@@ -32,6 +32,13 @@ var configCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
+		err = golang.Rehash()
+
+		if err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
+
 		fmt.Println("Goenv configured successfully!")
 	},
 }

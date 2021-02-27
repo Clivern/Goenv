@@ -103,7 +103,7 @@ func (fs *FileSystem) ClearDir(dir string) error {
 func (fs *FileSystem) StoreFile(path, content string) error {
 	dir := filepath.Dir(path)
 
-	err := os.MkdirAll(dir, 0775)
+	err := os.MkdirAll(dir, 0755)
 
 	if err != nil {
 		return err
@@ -186,4 +186,9 @@ func (fs *FileSystem) GetDirectoryFileNames(path string) ([]string, error) {
 	}
 
 	return result, nil
+}
+
+// ChangePermission changes the file permission
+func (fs *FileSystem) ChangePermission(path string, permisson os.FileMode) {
+	os.Chmod(path, permisson)
 }

@@ -6,7 +6,6 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -17,9 +16,7 @@ var execCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		// If the command is go install or go get, it will create a new chim with the new binary in .goenv/shims
 		// otherwise it return the current version path
-		mydir, _ := os.Getwd()
-		fmt.Println(mydir)
-		fmt.Println(args)
+		fmt.Printf("%s", "/Users/ahmetwal/.goenv/versions/1.16")
 	},
 }
 

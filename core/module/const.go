@@ -229,6 +229,36 @@ var GolangReleases = []string{
 	"1.9rc2",
 }
 
+// goShimContent shim for go binary
+var goShimContent = `#!/usr/bin/env bash
+
+GO_BINARY_NAME=go
+
+GO_VERSION_PATH=$(goenv exec)
+
+GOENV_ROOT="%s" \
+	GOPATH=$GO_VERSION_PATH \
+	GOBIN=$GO_VERSION_PATH/bin \
+	"$GO_VERSION_PATH/bin/$GO_BINARY_NAME" "$@"
+
+[[ "$@" =~ "get" ]] && ( goenv rehash )
+
+[[ "$@" =~ "install" ]] && ( goenv rehash )
+`
+
+// binaryShimContent shim other go binaries
+var binaryShimContent = `#!/usr/bin/env bash
+
+GO_BINARY_NAME=%s
+
+GO_VERSION_PATH=$(goenv exec)
+
+GOENV_ROOT="%s" \
+	GOPATH=$GO_VERSION_PATH \
+	GOBIN=$GO_VERSION_PATH/bin \
+	"$GO_VERSION_PATH/bin/$GO_BINARY_NAME" "$@"
+`
+
 // getDownloadURL returns the download link
 func getDownloadURL(version string) string {
 	url := strings.Replace(golangRegistry, "${VERSION}", version, -1)

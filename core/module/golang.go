@@ -19,7 +19,7 @@ type Golang struct {
 	RootPath       string
 	EnvironmentDir string
 	VersionsDir    string
-	ShimDir        string
+	ShimsDir       string
 	VersionFile    string
 	FileSystem     *service.FileSystem
 	Installer      *service.Installer
@@ -33,7 +33,7 @@ func NewGolangEnvironment(homePath string) *Golang {
 	return &Golang{
 		RootPath:       fmt.Sprintf("%s/%s", fs.RemoveTrailingSlash(homePath), ".goenv"),
 		VersionsDir:    "versions",
-		ShimDir:        "shims",
+		ShimsDir:       "shims",
 		VersionFile:    ".go-version",
 		EnvironmentDir: ".goenv",
 		FileSystem:     fs,
@@ -282,8 +282,8 @@ func (g *Golang) Configure() error {
 		return fmt.Errorf("Unable to configure environment: %s", err.Error())
 	}
 
-	if !g.FileSystem.DirExists(fmt.Sprintf("%s/%s", g.RootPath, g.ShimDir)) {
-		err = g.FileSystem.EnsureDir(fmt.Sprintf("%s/%s", g.RootPath, g.ShimDir), 0755)
+	if !g.FileSystem.DirExists(fmt.Sprintf("%s/%s", g.RootPath, g.ShimsDir)) {
+		err = g.FileSystem.EnsureDir(fmt.Sprintf("%s/%s", g.RootPath, g.ShimsDir), 0755)
 	}
 
 	if err != nil {
@@ -346,5 +346,71 @@ func (g *Golang) ValidateInstalledVersion(version string) (bool, error) {
 // Rehash gets a list of binaries under a certain
 // go bin directory and create shim for them
 func (g *Golang) Rehash() error {
+	var err error
+
+	goShim := fmt.Sprintf("%s/%s/go", g.RootPath, g.ShimsDir)
+	gofmtChim := fmt.Sprintf("%s/%s/gofmt", g.RootPath, g.ShimsDir)
+
+	// create go shim
+	if !g.FileSystem.FileExists(goShim) {
+		err = g.FileSystem.StoreFile(
+			goShim,
+			fmt.Sprintf(goShimContent, g.RootPath),
+		)
+
+		g.FileSystem.ChangePermission(goShim, 0755)
+	}
+
+	if err != nil {
+		return err
+	}
+
+	// create gofmt shim
+	if !g.FileSystem.FileExists(gofmtChim) {
+		err = g.FileSystem.StoreFile(
+			gofmtChim,
+			fmt.Sprintf(binaryShimContent, "gofmt", g.RootPath),
+		)
+
+		g.FileSystem.ChangePermission(gofmtChim, 0755)
+	}
+
+	if err != nil {
+		return err
+	}
+
+	// create third party binaries
+	vers, err := g.GetInstalledVersions()
+
+	if err != nil {
+		return err
+	}
+
+	for i := 0; i < len(vers); i++ {
+		bins, err := g.FileSystem.GetDirectoryFileNames(fmt.Sprintf(
+			"%s/%s/%s",
+			g.RootPath,
+			g.VersionsDir,
+			vers[i],
+		))
+
+		if err != nil {
+			return err
+		}
+
+		for i := 0; i < len(bins); i++ {
+			bin := fmt.Sprintf("%s/%s/%s", g.RootPath, g.ShimsDir, bins[i])
+
+			if !g.FileSystem.FileExists(bin) {
+				err = g.FileSystem.StoreFile(
+					bin,
+					fmt.Sprintf(binaryShimContent, "bin", g.RootPath),
+				)
+
+				g.FileSystem.ChangePermission(bin, 0755)
+			}
+		}
+	}
+
 	return nil
 }

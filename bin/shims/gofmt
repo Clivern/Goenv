@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+GO_BINARY_NAME=gofmt
+
+GO_VERSION_PATH=$(goenv exec)
+
+GOENV_ROOT="/Users/joedoe/.goenv" \
+	GOPATH=$GO_VERSION_PATH \
+	GOBIN=$GO_VERSION_PATH/bin \
+	"$GO_VERSION_PATH/bin/$GO_BINARY_NAME" "$@"
