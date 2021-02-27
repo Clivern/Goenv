@@ -241,9 +241,16 @@ GOENV_ROOT="%s" \
 	GOBIN=$GO_VERSION_PATH/bin \
 	"$GO_VERSION_PATH/bin/$GO_BINARY_NAME" "$@"
 
-[[ "$@" =~ "get" ]] && ( goenv rehash )
+if [[ "$@" =~ 'get' ]]
+then
+	goenv rehash
+fi
 
-[[ "$@" =~ "install" ]] && ( goenv rehash )
+if [[ "$@" =~ 'install' ]]
+then
+	goenv rehash
+fi
+
 `
 
 // binaryShimContent shim other go binaries
@@ -257,6 +264,7 @@ GOENV_ROOT="%s" \
 	GOPATH=$GO_VERSION_PATH \
 	GOBIN=$GO_VERSION_PATH/bin \
 	"$GO_VERSION_PATH/bin/$GO_BINARY_NAME" "$@"
+
 `
 
 // getDownloadURL returns the download link

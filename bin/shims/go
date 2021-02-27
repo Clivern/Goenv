@@ -9,6 +9,12 @@ GOENV_ROOT="/Users/joedoe/.goenv" \
 	GOBIN=$GO_VERSION_PATH/bin \
 	"$GO_VERSION_PATH/bin/$GO_BINARY_NAME" "$@"
 
-[[ "$@" =~ "get" ]] && ( goenv rehash )
+if [[ "$@" =~ 'get' ]]
+then
+	goenv rehash
+fi
 
-[[ "$@" =~ "install" ]] && ( goenv rehash )
+if [[ "$@" =~ 'install' ]]
+then
+	goenv rehash
+fi
