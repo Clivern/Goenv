@@ -404,7 +404,7 @@ func (g *Golang) Rehash() error {
 			if !g.FileSystem.FileExists(bin) {
 				err = g.FileSystem.StoreFile(
 					bin,
-					fmt.Sprintf(binaryShimContent, "bin", g.RootPath),
+					fmt.Sprintf(binaryShimContent, bins[i], g.RootPath),
 				)
 
 				if err != nil {
