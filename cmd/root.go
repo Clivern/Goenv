@@ -15,10 +15,10 @@ var config string
 
 var rootCmd = &cobra.Command{
 	Use: "goenv",
-	Short: `🐙 Manage Your Applications Go Environment.
+	Short: `🐺 Manage Your Applications Go Environment.
 
 If you have any suggestions, bug reports, or annoyances please report
-them to our issue tracker at <https://github.com/Clivern/goenv/issues>`,
+them to our issue tracker at <https://github.com/spacewalkio/goenv/issues>`,
 }
 
 // Execute runs cmd tool
