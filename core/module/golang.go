@@ -355,7 +355,7 @@ func (g *Golang) Rehash() error {
 	if !g.FileSystem.FileExists(goShim) {
 		err = g.FileSystem.StoreFile(
 			goShim,
-			fmt.Sprintf(goShimContent, g.RootPath),
+			fmt.Sprintf(goShimContent, g.EnvironmentDir),
 		)
 
 		g.FileSystem.ChangePermission(goShim, 0775)
@@ -369,7 +369,7 @@ func (g *Golang) Rehash() error {
 	if !g.FileSystem.FileExists(gofmtChim) {
 		err = g.FileSystem.StoreFile(
 			gofmtChim,
-			fmt.Sprintf(binaryShimContent, "gofmt", g.RootPath),
+			fmt.Sprintf(binaryShimContent, "gofmt", g.EnvironmentDir),
 		)
 
 		g.FileSystem.ChangePermission(gofmtChim, 0775)
@@ -404,7 +404,7 @@ func (g *Golang) Rehash() error {
 			if !g.FileSystem.FileExists(bin) {
 				err = g.FileSystem.StoreFile(
 					bin,
-					fmt.Sprintf(binaryShimContent, bins[i], g.RootPath),
+					fmt.Sprintf(binaryShimContent, bins[i], g.EnvironmentDir),
 				)
 
 				if err != nil {

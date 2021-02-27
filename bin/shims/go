@@ -4,7 +4,7 @@ GO_BINARY_NAME=go
 
 GO_VERSION_PATH=$(goenv exec)
 
-GOENV_ROOT="/Users/joedoe/.goenv" \
+GOENV_ROOT="$HOME/.goenv" \
 	GOPATH=$GO_VERSION_PATH \
 	GOBIN=$GO_VERSION_PATH/bin \
 	"$GO_VERSION_PATH/bin/$GO_BINARY_NAME" "$@"
