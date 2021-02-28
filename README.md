@@ -21,6 +21,11 @@
     </p>
 </p>
 <br/>
+<p align="center">
+    <a href="https://www.youtube.com/watch?v=nC344VXoFs4" target="_blank">
+        <img src="/static/screenshot.png" width="80%" />
+    </a>
+</p>
 
 Goenv helps you to work with multiple `golang` versions at the same time whether on mac or linux operating system. It supports both global and per-application version configuration.
 
