@@ -23,7 +23,7 @@
 <br/>
 <p align="center">
     <a href="https://www.youtube.com/watch?v=nC344VXoFs4" target="_blank">
-        <img src="/static/screenshot-1.png" width="80%" />
+        <img src="/static/screenshot-1.png" width="95%" />
     </a>
 </p>
 
