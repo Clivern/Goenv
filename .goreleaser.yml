@@ -33,9 +33,9 @@ snapshot:
   name_template: '{{ .Tag }}-next'
 brews:
   - name: goenv
-    homepage: 'https://github.com/Clevenio/homebrew-tools'
+    homepage: 'https://github.com/Norwik/homebrew-tools'
     tap:
-      owner: Clevenio
+      owner: Norwik
       name: homebrew-tools
       token: "{{ .Env.TAP_GITHUB_TOKEN }}"
     commit_author:

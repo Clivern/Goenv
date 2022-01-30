@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/clevenio/goenv/cmd"
+	"github.com/norwik/goenv/cmd"
 )
 
 var (

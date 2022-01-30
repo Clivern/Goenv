@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/clevenio/goenv/pkg"
+	"github.com/norwik/goenv/pkg"
 
 	"github.com/franela/goblin"
 )
