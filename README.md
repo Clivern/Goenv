@@ -38,10 +38,10 @@ Download [the latest `goenv` binary](https://github.com/norwik/Goenv/releases). 
 $ export GOENV_LATEST_VERSION=$(curl --silent "https://api.github.com/repos/norwik/Goenv/releases/latest" | jq '.tag_name' | sed -E 's/.*"([^"]+)".*/\1/' | tr -d v)
 
 # For Linux
-$ curl -sL https://github.com/norwik/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_{$GOENV_LATEST_VERSION}_Linux_x86_64.tar.gz | tar xz
+$ curl -sL https://github.com/norwik/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_Linux_x86_64.tar.gz | tar xz
 
 # For Mac
-$ curl -sL https://github.com/norwik/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_{$GOENV_LATEST_VERSION}_Darwin_x86_64.tar.gz | tar xz
+$ curl -sL https://github.com/norwik/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_Darwin_x86_64.tar.gz | tar xz
 ```
 
 Or install with homebrew
