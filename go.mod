@@ -1,6 +1,6 @@
 module github.com/clevenio/goenv
 
-go 1.19
+go 1.17
 
 require (
 	github.com/charmbracelet/bubbles v0.15.0
