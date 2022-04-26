@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/spacewalkio/goenv/cmd"
+	"github.com/clevenio/goenv/cmd"
 )
 
 var (

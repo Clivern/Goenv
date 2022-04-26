@@ -1,21 +1,21 @@
 <p align="center">
-    <img alt="Goenv Logo" src="/static/logo.png?v=1.8.0" width="200" />
+    <img alt="Goenv Logo" src="/static/logo.png?v=1.9.0" width="200" />
     <h3 align="center">Goenv</h3>
     <p align="center">Manage Your Applications Go Environment</p>
     <p align="center">
-        <a href="https://github.com/spacewalkio/Goenv/actions/workflows/build.yml">
-            <img src="https://github.com/spacewalkio/Goenv/actions/workflows/build.yml/badge.svg">
+        <a href="https://github.com/clevenio/Goenv/actions/workflows/build.yml">
+            <img src="https://github.com/clevenio/Goenv/actions/workflows/build.yml/badge.svg">
         </a>
-        <a href="https://github.com/spacewalkio/Goenv/releases">
-            <img src="https://img.shields.io/badge/Version-v1.8.0-red.svg">
+        <a href="https://github.com/clevenio/Goenv/releases">
+            <img src="https://img.shields.io/badge/Version-v1.9.0-red.svg">
         </a>
-        <a href="https://goreportcard.com/report/github.com/spacewalkio/Goenv">
-            <img src="https://goreportcard.com/badge/github.com/spacewalkio/Goenv?v=1.8.0">
+        <a href="https://goreportcard.com/report/github.com/clevenio/Goenv">
+            <img src="https://goreportcard.com/badge/github.com/clevenio/Goenv?v=1.9.0">
         </a>
-        <a href="https://godoc.org/github.com/spacewalkio/goenv">
-            <img src="https://godoc.org/github.com/spacewalkio/goenv?status.svg">
+        <a href="https://godoc.org/github.com/clevenio/goenv">
+            <img src="https://godoc.org/github.com/clevenio/goenv?status.svg">
         </a>
-        <a href="https://github.com/spacewalkio/Goenv/blob/main/LICENSE">
+        <a href="https://github.com/clevenio/Goenv/blob/main/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
         </a>
     </p>
@@ -32,23 +32,23 @@ Goenv helps you to work with multiple `golang` versions at the same time whether
 
 ## Usage
 
-Download [the latest `goenv` binary](https://github.com/spacewalkio/Goenv/releases). Make it executable from everywhere.
+Download [the latest `goenv` binary](https://github.com/clevenio/Goenv/releases). Make it executable from everywhere.
 
 ```zsh
-$ export GOENV_LATEST_VERSION=$(curl --silent "https://api.github.com/repos/spacewalkio/Goenv/releases/latest" | jq '.tag_name' | sed -E 's/.*"([^"]+)".*/\1/' | tr -d v)
+$ export GOENV_LATEST_VERSION=$(curl --silent "https://api.github.com/repos/clevenio/Goenv/releases/latest" | jq '.tag_name' | sed -E 's/.*"([^"]+)".*/\1/' | tr -d v)
 
 # For Linux
-$ curl -sL https://github.com/spacewalkio/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_{$GOENV_LATEST_VERSION}_Linux_x86_64.tar.gz | tar xz
+$ curl -sL https://github.com/clevenio/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_{$GOENV_LATEST_VERSION}_Linux_x86_64.tar.gz | tar xz
 
 # For Mac
-$ curl -sL https://github.com/spacewalkio/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_{$GOENV_LATEST_VERSION}_Darwin_x86_64.tar.gz | tar xz
+$ curl -sL https://github.com/clevenio/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_{$GOENV_LATEST_VERSION}_Darwin_x86_64.tar.gz | tar xz
 ```
 
 Or install with homebrew
 
 ```zsh
-$ brew tap spacewalkio/tools
-$ brew install spacewalkio/tools/goenv
+$ brew tap clevenio/tools
+$ brew install clevenio/tools/goenv
 ```
 
 Configure the goenv using the following command
@@ -106,7 +106,7 @@ $ goenv --help
 🐺 Manage Your Applications Go Environment.
 
 If you have any suggestions, bug reports, or annoyances please report
-them to our issue tracker at <https://github.com/spacewalkio/goenv/issues>
+them to our issue tracker at <https://github.com/clevenio/goenv/issues>
 
 Usage:
   goenv [command]
@@ -177,12 +177,12 @@ When you execute a shim, `goenv` determines which Go version to use by reading i
 
 For transparency into our release cycle and in striving to maintain backward compatibility, Goenv is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
 
-See the [Releases section of our GitHub project](https://github.com/spacewalkio/goenv/releases) for changelogs for each release version of Goenv. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/spacewalkio/goenv/milestones) for the future roadmap.
+See the [Releases section of our GitHub project](https://github.com/clevenio/goenv/releases) for changelogs for each release version of Goenv. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/clevenio/goenv/milestones) for the future roadmap.
 
 
 ## Bug tracker
 
-If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/spacewalkio/goenv/issues
+If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/clevenio/goenv/issues
 
 
 ## Security Issues

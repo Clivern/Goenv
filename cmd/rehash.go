@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/spacewalkio/goenv/core/module"
+	"github.com/clevenio/goenv/core/module"
 
 	"github.com/spf13/cobra"
 )
