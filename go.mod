@@ -1,4 +1,4 @@
-module github.com/norwik/goenv
+module github.com/clivern/goenv
 
 go 1.18
 

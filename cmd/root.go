@@ -18,7 +18,7 @@ var rootCmd = &cobra.Command{
 	Short: `🐺 Manage Your Applications Go Environment.
 
 If you have any suggestions, bug reports, or annoyances please report
-them to our issue tracker at <https://github.com/norwik/goenv/issues>`,
+them to our issue tracker at <https://github.com/clivern/goenv/issues>`,
 }
 
 // Execute runs cmd tool

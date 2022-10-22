@@ -40,14 +40,4 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
-brews:
-  - name: goenv
-    homepage: 'https://github.com/Norwik/homebrew-tools'
-    tap:
-      owner: Norwik
-      name: homebrew-tools
-      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
-    commit_author:
-      name: todd-the-bot
-      email: support@clivern.com
 project_name: goenv

@@ -7,7 +7,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/norwik/goenv/core/module"
+	"github.com/clivern/goenv/core/module"
 
 	"github.com/spf13/cobra"
 )

@@ -1,21 +1,21 @@
 <p align="center">
-    <img alt="Goenv Logo" src="/static/logo.png?v=1.16.0" width="200" />
+    <img alt="Goenv Logo" src="/static/logo.png?v=1.17.0" width="200" />
     <h3 align="center">Goenv</h3>
     <p align="center">Manage Your Applications Go Environment</p>
     <p align="center">
-        <a href="https://github.com/norwik/Goenv/actions/workflows/build.yml">
-            <img src="https://github.com/norwik/Goenv/actions/workflows/build.yml/badge.svg">
+        <a href="https://github.com/clivern/Goenv/actions/workflows/build.yml">
+            <img src="https://github.com/clivern/Goenv/actions/workflows/build.yml/badge.svg">
         </a>
-        <a href="https://github.com/norwik/Goenv/releases">
-            <img src="https://img.shields.io/badge/Version-v1.16.0-red.svg">
+        <a href="https://github.com/clivern/Goenv/releases">
+            <img src="https://img.shields.io/badge/Version-v1.17.0-red.svg">
         </a>
-        <a href="https://goreportcard.com/report/github.com/norwik/Goenv">
-            <img src="https://goreportcard.com/badge/github.com/norwik/Goenv?v=1.16.0">
+        <a href="https://goreportcard.com/report/github.com/clivern/Goenv">
+            <img src="https://goreportcard.com/badge/github.com/clivern/Goenv?v=1.17.0">
         </a>
-        <a href="https://godoc.org/github.com/norwik/goenv">
-            <img src="https://godoc.org/github.com/norwik/goenv?status.svg">
+        <a href="https://godoc.org/github.com/clivern/goenv">
+            <img src="https://godoc.org/github.com/clivern/goenv?status.svg">
         </a>
-        <a href="https://github.com/norwik/Goenv/blob/main/LICENSE">
+        <a href="https://github.com/clivern/Goenv/blob/main/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
         </a>
     </p>
@@ -32,23 +32,16 @@ Goenv helps you to work with multiple `golang` versions at the same time whether
 
 ## Usage
 
-Download [the latest `goenv` binary](https://github.com/norwik/Goenv/releases). Make it executable from everywhere.
+Download [the latest `goenv` binary](https://github.com/clivern/Goenv/releases). Make it executable from everywhere.
 
 ```zsh
-$ export GOENV_LATEST_VERSION=$(curl --silent "https://api.github.com/repos/norwik/Goenv/releases/latest" | jq '.tag_name' | sed -E 's/.*"([^"]+)".*/\1/' | tr -d v)
+$ export GOENV_LATEST_VERSION=$(curl --silent "https://api.github.com/repos/clivern/Goenv/releases/latest" | jq '.tag_name' | sed -E 's/.*"([^"]+)".*/\1/' | tr -d v)
 
 # For Linux
-$ curl -sL https://github.com/norwik/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_Linux_x86_64.tar.gz | tar xz
+$ curl -sL https://github.com/clivern/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_Linux_x86_64.tar.gz | tar xz
 
 # For Mac
-$ curl -sL https://github.com/norwik/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_Darwin_x86_64.tar.gz | tar xz
-```
-
-Or install with homebrew
-
-```zsh
-$ brew tap norwik/tools
-$ brew install norwik/tools/goenv
+$ curl -sL https://github.com/clivern/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_Darwin_x86_64.tar.gz | tar xz
 ```
 
 Configure the goenv using the following command
@@ -106,7 +99,7 @@ $ goenv --help
 🐺 Manage Your Applications Go Environment.
 
 If you have any suggestions, bug reports, or annoyances please report
-them to our issue tracker at <https://github.com/norwik/goenv/issues>
+them to our issue tracker at <https://github.com/clivern/goenv/issues>
 
 Usage:
   goenv [command]
@@ -177,12 +170,12 @@ When you execute a shim, `goenv` determines which Go version to use by reading i
 
 For transparency into our release cycle and in striving to maintain backward compatibility, Goenv is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
 
-See the [Releases section of our GitHub project](https://github.com/norwik/goenv/releases) for changelogs for each release version of Goenv. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/norwik/goenv/milestones) for the future roadmap.
+See the [Releases section of our GitHub project](https://github.com/clivern/goenv/releases) for changelogs for each release version of Goenv. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/clivern/goenv/milestones) for the future roadmap.
 
 
 ## Bug tracker
 
-If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/norwik/goenv/issues
+If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/clivern/goenv/issues
 
 
 ## Security Issues

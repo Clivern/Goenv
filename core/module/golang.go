@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/norwik/goenv/core/service"
-	"github.com/norwik/goenv/core/util"
+	"github.com/clivern/goenv/core/service"
+	"github.com/clivern/goenv/core/util"
 )
 
 // Golang type

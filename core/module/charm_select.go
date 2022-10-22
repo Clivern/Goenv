@@ -18,7 +18,7 @@ import (
 //
 // ```
 // import (
-//	  "github.com/norwik/goenv/core/module"
+//	  "github.com/clivern/goenv/core/module"
 // )
 //
 //
