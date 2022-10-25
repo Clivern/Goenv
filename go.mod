@@ -7,7 +7,7 @@ require (
 	github.com/charmbracelet/bubbletea v0.22.1
 	github.com/charmbracelet/lipgloss v0.6.0
 	github.com/franela/goblin v0.0.0-20211003143422-0a4f594942bf
-	github.com/spf13/cobra v1.6.0
+	github.com/spf13/cobra v1.6.1
 )
 
 require (
