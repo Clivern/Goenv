@@ -23,7 +23,7 @@ func TestUnitGolang(t *testing.T) {
 	g.Describe("#Golang", func() {
 		g.It("It should satisfy test cases", func() {
 			// Test GetVersions
-			g.Assert(len(goenv.GetVersions())).Equal(273)
+			g.Assert(len(goenv.GetVersions())).Equal(286)
 
 			// Test SetVersion
 			versionFile := fmt.Sprintf("%s/.goenv/%s", baseDir, ".go-version")
