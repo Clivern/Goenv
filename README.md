@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Goenv Logo" src="/static/logo.png?v=1.9.0" width="200" />
+    <img alt="Goenv Logo" src="/static/logo.png?v=1.10.0" width="200" />
     <h3 align="center">Goenv</h3>
     <p align="center">Manage Your Applications Go Environment</p>
     <p align="center">
@@ -7,10 +7,10 @@
             <img src="https://github.com/clevenio/Goenv/actions/workflows/build.yml/badge.svg">
         </a>
         <a href="https://github.com/clevenio/Goenv/releases">
-            <img src="https://img.shields.io/badge/Version-v1.9.0-red.svg">
+            <img src="https://img.shields.io/badge/Version-v1.10.0-red.svg">
         </a>
         <a href="https://goreportcard.com/report/github.com/clevenio/Goenv">
-            <img src="https://goreportcard.com/badge/github.com/clevenio/Goenv?v=1.9.0">
+            <img src="https://goreportcard.com/badge/github.com/clevenio/Goenv?v=1.10.0">
         </a>
         <a href="https://godoc.org/github.com/clevenio/goenv">
             <img src="https://godoc.org/github.com/clevenio/goenv?status.svg">
