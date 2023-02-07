@@ -1,19 +1,9 @@
-# Make sure to check the documentation at http://goreleaser.com
----
-archives:
-  - replacements:
-      '386': i386
-      amd64: x86_64
-      darwin: Darwin
-      linux: Linux
-      windows: Windows
-    files:
-      - LICENSE
-      - README.md
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
 before:
   hooks:
-    - go mod download
-    - go generate ./...
+    - "go mod download"
+    - "go generate ./..."
 builds:
   - env:
       - CGO_ENABLED=0
@@ -21,16 +11,34 @@ builds:
       - linux
       - darwin
       - windows
+
+archives:
+  - format: tar.gz
+    # this name template makes the OS and Arch compatible with the results of uname.
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    # use zip for windows archives
+    format_overrides:
+    - goos: windows
+      format: zip
+    files:
+      - LICENSE
+      - README.md
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
 changelog:
+  sort: asc
   filters:
     exclude:
       - '^docs:'
       - '^test:'
-  sort: asc
-checksum:
-  name_template: checksums.txt
-snapshot:
-  name_template: '{{ .Tag }}-next'
 brews:
   - name: goenv
     homepage: 'https://github.com/Norwik/homebrew-tools'
