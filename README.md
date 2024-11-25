@@ -40,7 +40,11 @@ $ export GOENV_LATEST_VERSION=$(curl --silent "https://api.github.com/repos/cliv
 # For Linux
 $ curl -sL https://github.com/clivern/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_Linux_x86_64.tar.gz | tar xz
 
-# For Mac
+# For Mac (Arm M chips)
+$ curl -sL https://github.com/clivern/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_Darwin_arm64.tar.gz | tar xz
+
+
+# For Mac (Intel)
 $ curl -sL https://github.com/clivern/Goenv/releases/download/v{$GOENV_LATEST_VERSION}/goenv_Darwin_x86_64.tar.gz | tar xz
 ```
 
