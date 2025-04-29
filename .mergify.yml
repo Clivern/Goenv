@@ -7,7 +7,7 @@ pull_request_rules:
       - author!=Clivern
       - approved-reviews-by=Clivern
       - label=release
-    name: "Automatic Merge 🚀"
+    name: "Automatic Approved Merge 🚀"
   - actions:
       merge:
         method: merge

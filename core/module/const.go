@@ -314,6 +314,9 @@ var GolangReleases = []string{
 	"1.23.5",
 	"1.24rc1",
 	"1.24rc2",
+	"1.24.0",
+	"1.24.1",
+	"1.24.2",
 }
 
 // goShimContent shim for go binary
