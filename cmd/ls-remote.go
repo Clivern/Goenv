@@ -34,8 +34,7 @@ var installedColor = color.New(color.FgHiGreen)
 var preReleaseColor = color.New(color.FgRed)
 var installedPreReleaseColor = color.New(color.FgYellow)
 
-
-type printerType func(format string, a ...interface{}) 
+type printerType func(format string, a ...interface{})
 
 func defaultPrint(format string, a ...interface{}) {
 	fmt.Printf(format, a...)
@@ -63,12 +62,11 @@ var lsCmd = &cobra.Command{
 		for _, remoteRelease := range module.GolangReleases {
 			//remoteRelease = "v" + remoteRelease
 			printer = defaultPrint
-			isPreRelease := (
-					strings.Contains(remoteRelease, "rc") ||
-					strings.Contains(remoteRelease, "beta") ||
-					strings.Contains(remoteRelease, "alpha"))
+			isPreRelease := (strings.Contains(remoteRelease, "rc") ||
+				strings.Contains(remoteRelease, "beta") ||
+				strings.Contains(remoteRelease, "alpha"))
 
-			if ! showPreRelease && isPreRelease {
+			if !showPreRelease && isPreRelease {
 				continue
 			}
 			if isPreRelease && displayColor {
@@ -93,12 +91,9 @@ var lsCmd = &cobra.Command{
 		}
 
 	},
-
 }
 
 func init() {
-
-
 
 	colorHelp := fmt.Sprintf("display with colors: %s %s %s", installedColor.Sprint("installed version"), preReleaseColor.Sprint("Pre-release version"), installedPreReleaseColor.Sprint("Installed pre-release version"))
 
@@ -111,6 +106,5 @@ func init() {
 	flags.BoolVarP(&noColor, "no_color", "", false, "don't display color")
 	lsCmd.MarkFlagsMutuallyExclusive("color", "no_color")
 	rootCmd.AddCommand(lsCmd)
-	
 
 }
