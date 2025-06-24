@@ -64,6 +64,12 @@ $ export PATH="$HOME/.goenv/shims:"$PATH
 $ eval "$(goenv init)"
 ```
 
+Find an installable `go` version
+
+```zsh
+$ goenv ls-remote
+```
+
 Install a new `go` version `1.18` and set as a global
 
 ```zsh
@@ -118,6 +124,7 @@ Available Commands:
   init        Init the import path for goenv shims.
   install     Install a go version.
   license     Print the license
+  ls-remote   List installable go versions.
   local       Set or show the local application-specific go version.
   rehash      Refresh binaries under goenv shim directory.
   satisfy     Satisfy the current directry go version.
