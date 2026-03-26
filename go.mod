@@ -3,7 +3,7 @@ module github.com/clivern/goenv
 go 1.24.8
 
 require (
-	github.com/charmbracelet/bubbles v0.16.0
+	github.com/charmbracelet/bubbles/v2 v2.1.0
 	github.com/charmbracelet/bubbletea v0.27.0
 	github.com/charmbracelet/lipgloss v0.6.0
 	github.com/fatih/color v1.18.0
