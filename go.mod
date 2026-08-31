@@ -4,7 +4,7 @@ go 1.24.8
 
 require (
 	github.com/charmbracelet/bubbles v0.16.0
-	github.com/charmbracelet/bubbletea v0.27.0
+	github.com/charmbracelet/bubbletea/v2 v2.0.9
 	github.com/charmbracelet/lipgloss v0.6.0
 	github.com/fatih/color v1.18.0
 	github.com/franela/goblin v0.0.0-20211003143422-0a4f594942bf
